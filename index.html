@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papelera MSM - Tu Proveedor de Papel de Calidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        /* Hero */
+#hero {
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.4)), url('assets/grupal.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .cta-button:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+        }
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+        /* About */
+        #about {
+            background: #f8f9fa;
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .about-image {
+            background: linear-gradient(45deg, #bdc3c7, #ecf0f1);
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #95a5a6;
+        }
+        /* Products */
+        #products .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-info h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #27ae60;
+        }
+        /* Testimonials */
+        #testimonials {
+            background: #34495e;
+            color: white;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .stars {
+            color: #f1c40f;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        /* Contact */
+        #contact {
+            background: #f8f9fa;
+        }
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #3498db;
+            width: 40px;
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            background: #128c7e;
+            text-decoration: none;
+            color: white;
+        }
+        .whatsapp-btn span {
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        @media (max-width: 480px) {
+            .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+            }
+            .whatsapp-btn span {
+                display: none;
+            }
+        }
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow: auto;
+            position: relative;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #000;
+        }
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #f5f7fa;
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="assets/logo649228325_18361935529200876_5195002498096372535_n.jpg" alt="Papelera MSM" style="height: 40px; width: auto; margin-right: 10px; vertical-align: middle;">
+                Papelera MSM
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#about">Nosotros</a></li>
+                <li><a href="#products">Productos</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+<section id="hero">
+        <div class="container hero-content">
+            <h1>Papel de Calidad Superior</h1>
+            <p>Tu proveedor confiable de papel reciclado, bond y especializado para todos tus proyectos.</p>
+            <a href="#products" class="cta-button">Ver Productos</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <h2>Sobre Papelera MSM</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Con más de 20 años en el mercado, Papelera MSM se dedica a proveer papel de la más alta calidad para empresas, escuelas y hogares.</p>
+                    <p>Nos especializamos en papel reciclado ecológico, manteniendo precios competitivos sin comprometer la calidad.</p>
+                    <p>Nuestra misión es ser el socio preferido en soluciones de papel sostenibles.</p>
+                </div>
+                <div class="about-image">
+                    <img src="assets/3-1.jpg" alt="Papelera MSM" style="width: 100%; height: 300px; object-fit: cover; border-radius: 20px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+        <div class="container">
+            <h2>Nuestros Productos</h2>
+            <div class="products-grid">
+                <div class="product-card" onclick="window.open('https://wa.me/+5491160246291?text=Hola, me interesa el producto Paños de Cocina $13.99', '_blank')" style="cursor: pointer;">
+                    <div class="product-image">
+                        <img src="assets/ROLLO-COCINA-jpeg.webp" alt="Paños de Cocina" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h3>Paños de Cocina </h3>
+                        <p>Paquete de 200 paños x8 unidades, para stockear tu cocina.</p>
+                        <div class="product-price">$13.999</div>
+                    </div>
+                </div>
+                <div class="product-card" onclick="window.open('https://wa.me/+5491160246291?text=Hola, me interesa el producto Papel Higiénico $13.99', '_blank')" style="cursor: pointer;">
+                    <div class="product-image">
+                        <img src="assets/Toiletpapier_(Gobran111).jpg" alt="Papel Higiénico" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h3>Papel Higiénico</h3>
+                        <p>30 mts x 30 unidades.</p>
+                        <div class="product-price">$13.999</div>
+                    </div>
+                </div>
+                <div class="product-card" onclick="window.open('https://wa.me/+5491160246291?text=Hola, me interesa la Promo Gastronómicos $26.99', '_blank')" style="cursor: pointer;">
+                    <div class="product-image">
+                        <img src="assets/still-life-food-delivery.jpg" alt="Promo Gastronomicos" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h3>Promo Gastronomicos</h3>
+                        <p>50 cajas de burguer + 50 bandejas plasticas n.107 + 50 dips c/tapa 55cc + 50 bolsas craft n.7.</p>
+                        <div class="product-price">$26.999</div>
+                    </div>
+                </div>
+                <div class="product-card" data-modal="papel-especial">
+                    <div class="product-image">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Papeles Especiales</h3>
+                        <p>Texturizados, colores y especiales para artesanía.</p>
+                        <div class="product-price">$8.999+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"Excelente calidad y servicio rápido. Mi proveedor favorito."</p>
+                    <strong>- María G., Empresa Gráfica</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"El papel reciclado es perfecto para nuestra política verde."</p>
+                    <strong>- Carlos R., Escuela Primaria</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"Precios competitivos y entrega puntual siempre."</p>
+                    <strong>- Laura M., Oficina Corporativa</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+5491160246291" style="color: inherit; text-decoration: none;">
+                            <strong>+54 9 11 6024-6291</strong>
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@papeleramsm.com" style="color: inherit; text-decoration: none;">
+                            <strong>info@papeleramsm.com</strong>
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+Rivadavia+16188,+B1706+Haedo,+Provincia+de+Buenos+Aires" target="_blank" style="color: inherit; text-decoration: none;">
+                            <strong>Av. Rivadavia 16188, B1706 Haedo, Provincia de Buenos Aires</strong>
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>Horario: L-V 9am-6pm</strong>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <a href="https://www.instagram.com/papeleramsm/" target="_blank" style="color: inherit; text-decoration: none;">
+                            <strong>@papeleramsm</strong>
+                        </a>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.192372865013!2d-58.595837615206!3d-34.64600908121885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc79c97259f79%3A0x8dc420e3b9d8ec09!2sPapelera%20MSM%2C%20Av.%20Rivadavia%2016188%2C%20B1706%20Haedo%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1720323234567!5m2!1ses!2sar" 
+                        width="100%" 
+                        height="300" 
+                        style="border:0; border-radius: 15px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Papelera MSM. Todos los derechos reservados. | Hecho con <i class="fas fa-heart" style="color: #e74c3c;"></i> por BLACKBOXAI</p>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div style="padding: 2rem;">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDesc"></p>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #27ae60; margin-top: 1rem;" id="modalPrice"></div>
+            </div>
+        </div>
+    </div>
+
+            <a href="https://wa.me/+5491160246291?text=Hola%20Papelera%20MSM%2C%20me%20interesa%20hacer%20una%20consulta..." class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+        
+        <script src="app.js"></script>
+    </body>
+</html>
+
